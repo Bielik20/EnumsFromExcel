@@ -33,6 +33,7 @@ namespace EnumsFromExcel
             });
             WriteEnumProperties();
             WriteDatabaseModelProperties();
+            WriteDbSets();
         }
 
         private void WriteDatabaseModel(EnumModel enumModel)
@@ -59,6 +60,19 @@ namespace EnumsFromExcel
             }
 
             StreamWriter file = new StreamWriter(@"Output\DatabaseModelProperties.cs");
+            file.WriteLine(lines);
+            file.Close();
+        }
+
+        private void WriteDbSets()
+        {
+            string lines = "";
+            foreach (var enumModel in _enumModelList)
+            {
+                lines += $"public DbSet<ADD_{enumModel.GetFormatedTitle()}> ADD_{enumModel.GetFormatedTitle()}" + " { get; set; }\n";
+            }
+
+            StreamWriter file = new StreamWriter(@"Output\DbSets.cs");
             file.WriteLine(lines);
             file.Close();
         }
