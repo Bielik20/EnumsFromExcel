@@ -13,8 +13,13 @@ namespace EnumsFromExcel
         {
             var excelReader = new ExcelReader(AppDomain.CurrentDomain.BaseDirectory + @"\input.xlsx");
             var enumModelList = excelReader.GetModelList();
+
             var csEnumWriter = new CsEnumWriter(enumModelList);
             csEnumWriter.CreateFiles();
+
+            //var csPropWriter = new CsPropWriter(enumModelList);
+            //csPropWriter.CreateFiles();
+
             Console.WriteLine("Ready");
             Console.ReadLine();
         }
