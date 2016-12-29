@@ -5,19 +5,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EnumsFromExcel
+namespace ReadWriteHelper
 {
-    class CsWriter
+    public class CsEnumWriter
     {
         List<EnumModel> _enumModelList = new List<EnumModel>();
         readonly string _enumBase;
         readonly string _databaseBase;
 
-        public CsWriter(List<EnumModel> enumModelList)
+        public CsEnumWriter(List<EnumModel> enumModelList)
         {
             _enumModelList = enumModelList;
-            _enumBase = ReadBase(@"BaseFiles\EnumBase.cs");
-            _databaseBase = ReadBase(@"BaseFiles\DatabaseBase.cs");
+            _enumBase = BaseReader.Read(@"BaseFiles\EnumBase.cs");
+            _databaseBase = BaseReader.Read(@"BaseFiles\DatabaseBase.cs");
         }
 
         public void CreateFiles()
@@ -103,23 +103,6 @@ namespace EnumsFromExcel
             StreamWriter file = new StreamWriter(@"Output\EnumProperties.cs");
             file.WriteLine(lines);
             file.Close();
-        }
-
-        private string ReadBase(string filePath)
-        {
-            try
-            {
-                using (StreamReader sr = new StreamReader(filePath))
-                {
-                    return sr.ReadToEnd();
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("The file could not be read:");
-                Console.WriteLine(e.Message);
-                return "";
-            }
         }
     }
 }

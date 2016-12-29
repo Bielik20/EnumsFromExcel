@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Excel = Microsoft.Office.Interop.Excel;
 
-namespace EnumsFromExcel
+namespace ReadWriteHelper
 {
-    class ExcelReader
+    public class ExcelReader
     {
         string _filePath;
 

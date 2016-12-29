@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EnumsFromExcel
+namespace ReadWriteHelper
 {
-    class EnumModel
+    public class EnumModel
     {
         public string Title { get; set; }
         public List<string> EnumsList { get; set; } = new List<string>();
